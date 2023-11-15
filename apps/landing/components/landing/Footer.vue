@@ -13,14 +13,8 @@
         {{ $t("app_name") }}
       </NuxtLink>
       <div class="text-sm text-gray-600">
-        <span class="font-medium text-gray-800">{{ $t("app_name") }}</span>
-        by
-        <a
-          href="https://github.com/mhd-zaid"
-          class="font-medium hover:underline text-gray-800"
-        >
-          Zaid Mouhamad
-        </a>. All rights reserved.
+        <span class="font-medium text-gray-800">&copy; 2023 {{ $t("app_name") }}</span>
+        All rights reserved.
       </div>
     </div>
   </footer>

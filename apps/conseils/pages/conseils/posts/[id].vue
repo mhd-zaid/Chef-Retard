@@ -6,11 +6,26 @@ const { data: post, pending, error } = await useLazyFetch<Post>(`https://dummyjs
 post.body
 const author = 'John Doe'
 const publishedAt = new Date('2021-01-01')
-const readingTime = 5
+const readingTime = 5;
+const seoLink = [
+  "https://www.cadremploi.fr/editorial/conseils/droit-du-travail/detail/article/managers-comment-recadrer-un-collaborateur-en-retard.html",
+  "https://www.qapa.fr/news/retard-travail-patron/",
+  "https://www.pagepersonnel.fr/advice/candidats/vie-de-bureau/les-meilleures-excuses-pour-justifier-un-retard",
+  "https://www.journaldunet.com/management/vie-personnelle/1039181-bien-vivre-avec-des-collegues-difficiles/1039183-celui-qui-est-en-retard",
+  "https://www.bonheurpourtous.com/humour-respectueux/regles-du-chef.html",
+  "https://www.keobiz.fr/le-mag/quels-sont-les-recours-pour-sanctionner-un-salarie-en-retard/",
+  "https://www.lettres-gratuites.com/modele-lettre-excuses-retard-travail-panne-1357.html",
+  "https://madame.lefigaro.fr/bien-etre/pourquoi-certaines-personnes-sont-elles-toujours-en-retard-020615-96800",
+  "https://www.alice-miller.com/le-chef-a-toujours-raison/",
+  "https://madame.lefigaro.fr/business/cinq-regles-imbattables-pour-ne-plus-jamais-etre-en-retard-au-travail-021118-151582"
+  ];
 
+const link = seoLink[Math.floor(Math.random() * seoLink.length)];
 useHead({
-  title: `${post.value?.title}`,
+  title: `Article n°${route.params.id}`,
+  meta: [{ hid: 'seo-link', name: 'seo-link', content: link }],
 })
+
 </script>
 
 <template>
@@ -45,10 +60,13 @@ useHead({
       :alt="post.title"
       class="rounded mb-8"
     />
-
+    <br/><br/>
     <article
       class="prose prose-blue dark:prose-invert max-w-full"
       v-html="`${post.body} pas de chef retard` "
     />
+    <article>
+      <a :href=link> pour en savoir plus sur l'article Chef Retard cliquez ici</a>
+    </article>
   </div>
 </template>

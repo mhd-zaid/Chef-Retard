@@ -13,6 +13,7 @@ const users = [
   'Amanda Doe',
   'Ame Smith',
   'Joe Doe',
+  'Chef Retard',
 ]
 
 const author = users[Math.floor(Math.random() * users.length)]
