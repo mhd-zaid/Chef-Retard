@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontaine',
-    'nuxt-simple-sitemap',
   ],
   i18n: {
     locales: ['fr'],
@@ -65,13 +64,10 @@ export default defineNuxtConfig({
   },
 
   devtools: true,
-  sitemap: {
-    generate: true,
-    routes: [
-      '/',
-      '/contact',
-      '/conseils',
-      '/conseils/posts/*',
-    ],
-  },
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml']
+    }
+  }
+
 })
