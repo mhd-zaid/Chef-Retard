@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import type { number } from 'yup';
 import postsData from '../../conseils/posts.json'
 
 const fetchPostsById = async (id:any) => {
   
   const data = postsData;
-
-  return data.posts[id - 1];
+  const post = data.posts.find((post) => post.slug === id);
+  return post;
 }
 
+const fetchPosts = async () => {
+  
+  const data = postsData;
+  return data.posts;
+}
+const posts = await fetchPosts()
 const route = useRoute()
 
 const post = await fetchPostsById(route.params.id);
@@ -16,20 +21,11 @@ const post = await fetchPostsById(route.params.id);
 const author = 'John Doe'
 const publishedAt = new Date('2021-01-01')
 const readingTime = 5;
-const seoLink = [
-  "https://www.cadremploi.fr/editorial/conseils/droit-du-travail/detail/article/managers-comment-recadrer-un-collaborateur-en-retard.html",
-  "https://www.qapa.fr/news/retard-travail-patron/",
-  "https://www.pagepersonnel.fr/advice/candidats/vie-de-bureau/les-meilleures-excuses-pour-justifier-un-retard",
-  "https://www.journaldunet.com/management/vie-personnelle/1039181-bien-vivre-avec-des-collegues-difficiles/1039183-celui-qui-est-en-retard",
-  "https://www.bonheurpourtous.com/humour-respectueux/regles-du-chef.html",
-  "https://www.keobiz.fr/le-mag/quels-sont-les-recours-pour-sanctionner-un-salarie-en-retard/",
-  "https://www.lettres-gratuites.com/modele-lettre-excuses-retard-travail-panne-1357.html",
-  "https://madame.lefigaro.fr/bien-etre/pourquoi-certaines-personnes-sont-elles-toujours-en-retard-020615-96800",
-  "https://www.alice-miller.com/le-chef-a-toujours-raison/",
-  "https://madame.lefigaro.fr/business/cinq-regles-imbattables-pour-ne-plus-jamais-etre-en-retard-au-travail-021118-151582"
-  ];
 
-const link = seoLink[Math.floor(Math.random() * seoLink.length)];
+const randomSlug = posts[Math.floor(Math.random() * posts.length)].slug
+
+const link = `/conseils/posts/${randomSlug}`
+
 useHead({
   title: `${post.title}`,
 })

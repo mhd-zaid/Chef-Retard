@@ -28,7 +28,7 @@ const minutesRead = Math.floor(Math.random() * 10) + 1
 <template>
   <NuxtLink
     class="bg-white flex flex-col rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300"
-    :to="`/conseils/posts/${post.id}`"
+    :to="`/conseils/posts/${post.slug}`"
     :title="post.title"
   >
     <BlogPostImage
