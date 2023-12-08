@@ -45,11 +45,10 @@ useHead({
       </div>
     </div>
 
-    <BlogPostImage
-      v-if="post.image"
-      :src="`https://source.unsplash.com/random?${post.tags.join(',')}`"
+    <img
+      :src="`https://source.unsplash.com/random?chef`"
       :alt="post.title"
-      class="rounded mb-8"
+      class="rounded mb-8 w-full h-[400px] object-cover bg-gray-100"
     />
     <br/><br/>
     <article

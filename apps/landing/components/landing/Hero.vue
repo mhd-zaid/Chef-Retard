@@ -18,7 +18,14 @@ const appConfig = useAppConfig()
     </div>
   </div>
   <main class="mx-auto max-w-4xl">
-    <article class="text-justify">
+    <article class="text-justify">  
+      <img
+      :src="`https://source.unsplash.com/random?cuisine`"
+      height="150"
+      width="100%"
+      class="h-[300px] w-full object-cover bg-gray-100"
+    />
+    <br>
       <h2>La Magie du Chef Retard à Paris : Une Odyssée Culinaire qui Vaut l'Attente</h2>
 
       <p>Dans le cœur vibrant de Paris, un soir étoilé, les convives se sont rassemblés avec des attentes élevées dans un restaurant réputé. Le chef, reconnu pour son talent culinaire exceptionnel, était le maître incontesté de la cuisine raffinée. Cependant, ce soir-là, le temps semblait jouer un tour au chef renommé.</p>

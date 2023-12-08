@@ -23,6 +23,9 @@ const publishedAt = new Date(
 )
 
 const minutesRead = Math.floor(Math.random() * 10) + 1
+
+const tag = ["chef","chef-retard","cuisine","plat","recette","gastronomie","restaurant","ingrédient","préparation","délice"]
+const randomTag = tag[Math.floor(Math.random() * tag.length)];
 </script>
 
 <template>
@@ -31,8 +34,8 @@ const minutesRead = Math.floor(Math.random() * 10) + 1
     :to="`/conseils/posts/${post.slug}`"
     :title="post.title"
   >
-    <BlogPostImage
-      :src="`https://source.unsplash.com/random?${post.tags.join(',')}`"
+    <img
+      :src="`https://source.unsplash.com/random?${randomTag}`"
       height="150"
       width="100%"
       class="h-[150px] w-full object-cover bg-gray-100"

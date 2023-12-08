@@ -1,6 +1,6 @@
 import { serverQueryContent } from '#content/server'
 import { SitemapStream, streamToPromise } from 'sitemap'
-
+import dataJson from '../../apps/conseils/pages/conseils/posts.json'
 export default defineEventHandler(async (event) => {
   // Fetch all documents
   const docs = [
@@ -18,9 +18,10 @@ export default defineEventHandler(async (event) => {
     hostname: 'https://chefontime.tech/'
     //hostname: 'http://localhost:3000/'
   })
-  for (let i = 1; i < 31; i++) {
+  for (let i = 1; i < 100; i++) {
+    const slug = dataJson.posts[i].slug
     docs.push({
-        _path: `/conseils/posts/${i}`
+        _path: `/conseils/posts/${slug}`
     })
   }
   for (const doc of docs) {
