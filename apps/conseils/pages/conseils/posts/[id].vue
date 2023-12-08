@@ -1,9 +1,18 @@
 <script setup lang="ts">
-import type { Post } from '~~/types'
+import type { number } from 'yup';
+import postsData from '../../conseils/posts.json'
+
+const fetchPostsById = async (id:any) => {
+  
+  const data = postsData;
+
+  return data.posts[id - 1];
+}
 
 const route = useRoute()
-const { data: post, pending, error } = await useLazyFetch<Post>(`https://dummyjson.com/posts/${route.params.id}`)
-post.body
+
+const post = await fetchPostsById(route.params.id);
+
 const author = 'John Doe'
 const publishedAt = new Date('2021-01-01')
 const readingTime = 5;
@@ -22,27 +31,13 @@ const seoLink = [
 
 const link = seoLink[Math.floor(Math.random() * seoLink.length)];
 useHead({
-  title: `Article n°${route.params.id}`,
-  meta: [{ hid: 'seo-link', name: 'seo-link', content: link }],
+  title: `${post.title}`,
 })
 
 </script>
 
 <template>
-  <div v-if="pending" class="py-10">
-    <div class="bg-gray-300 h-5 mb-4 animate-pulse rounded-lg max-w-2xl mx-auto" />
-    <div class="bg-gray-300 h-3 mb-10 animate-pulse rounded-lg max-w-xs mx-auto" />
-    <div class="bg-gray-300 h-4 mb-2 animate-pulse rounded-lg ml-14" />
-    <div v-for="i in 6" :key="i" class="bg-gray-300 h-4 mb-2 animate-pulse rounded-lg" />
-    <div class="bg-gray-300 h-4 mb-6 animate-pulse rounded-lg max-w-2xl" />
-    <div class="bg-gray-300 h-4 mb-2 animate-pulse rounded-lg ml-14" />
-    <div v-for="i in 5" :key="i" class="bg-gray-300 h-4 mb-2 animate-pulse rounded-lg" />
-    <div class="bg-gray-300 h-4 mb-10 animate-pulse rounded-lg max-w-md" />
-  </div>
-  <div v-else-if="error">
-    {{ error }}
-  </div>
-  <div v-else-if="post" class="mx-auto py-5 lg:py-10 px-6">
+  <div v-if="post" class="mx-auto py-5 lg:py-10 px-6">
     <div class="text-center mb-5 lg:mb-10 max-w-xl mx-auto py-5 lg:py-10">
       <h1 class="text-3xl lg:text-4xl text-blue-600 font-bold mb-5">
         {{ post.title }}

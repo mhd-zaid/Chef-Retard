@@ -17,7 +17,7 @@ useHead({
 </script>
 
 <template>
-  <Html lang="en" />
+  <Html lang="fr" />
   <NuxtLoadingIndicator />
   <NuxtLayout>
     <NuxtPage />

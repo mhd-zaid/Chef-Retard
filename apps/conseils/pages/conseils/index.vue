@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import type { Post } from '~~/types'
+import postsData from '../conseils/posts.json'
+const fetchPosts = async () => {
+  
+  const data = postsData;
+  return data.posts;
+}
 
-const { data, pending, error } = useLazyFetch<{
-  posts: Post[]
-}>('https://dummyjson.com/posts')
+const { data } = await useAsyncData(fetchPosts)
+
+
 
 useHead({
   title: 'Conseils',
@@ -20,15 +25,8 @@ useHead({
         Nos conseils d'expert pour ne plus être un chef en retard
       </h2>
     </div>
-
-    <div v-if="pending" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <div v-for="i in 12" :key="i" class="bg-gray-200 h-56 animate-pulse rounded-lg" />
-    </div>
-    <div v-else-if="error">
-      {{ error }}
-    </div>
-    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <ConseilsPostItem v-for="post in data?.posts" :key="post.id" :post="post" />
+    <div v-if="data" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <ConseilsPostItem v-for="post in data" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
